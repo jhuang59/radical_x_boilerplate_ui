@@ -16,7 +16,8 @@ function ChatPanel() {
         setMessages([...messages, { type: 'user', content: query }]);
         setIsBotTyping(true);
         
-        try {
+        try {//http://localhost:5000/query
+            ///api/query-vertex
             const result = await fetch('/api/query-vertex', {
                 method: 'POST',
                 headers: {
@@ -24,7 +25,7 @@ function ChatPanel() {
                 },
                 body: JSON.stringify({ query }),
             });
-
+            
             const data = await result.json();
             const words = data.response.trim().split(' ');
             let chunks = [];
