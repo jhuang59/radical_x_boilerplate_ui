@@ -24,12 +24,13 @@ app.post('/api/query-vertex', async(req, res) => {
         const botResponse = JSON.stringify({ data });
         // const words = data.trim().split(' ');
         // console.log("botResponse",botResponse)
-        console.log("botResponse",botResponse)
+        // console.log("botResponse",botResponse)
         // console.log("words",words)
         // console.log("pythonApiResponse",pythonApiResponse)
-        console.log("response",{response:data[1]})
-        res.json({response:data[1]["content"]});
-        
+        // console.log("response",{response:data[1]})
+        contents = data.map(x => x['content'])
+        res.json(JSON.stringify(contents));
+
     } catch (error) {
         console.error('Failed to fetch data from Python API:', error);
         res.status(500).json({ response: 'Internal Server Error' });

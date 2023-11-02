@@ -26,29 +26,40 @@ function ChatPanel() {
                 body: JSON.stringify({ query }),
             });
             
-            const data = await result.json();
-            const words = data.response.trim().split(' ');
-            let chunks = [];
+            let chat_history = await result.json();
+            chat_history = JSON.parse(chat_history);
+            chat_history.forEach((message) => {
+                console.log(message);
+                const words = message.trim().split(' ');
+                let chunks = [];
 
-            while (words.length) {
-                chunks.push(words.splice(0, 5).join(' ')); // Breaking the message into chunks of 5 words
-            }
+                while (words.length) {
+                    chunks.push(words.splice(0, 5).join(' ')); // Breaking the message into chunks of 5 words
+                }
 
-            console.log("Starting chunk logic");
-            console.log("NUMBER OF CHUNKS: ", chunks.length);
-            chunks.forEach((chunk, index) => {
-                setTimeout(() => {
+                // console.log("Starting chunk logic");
+                // console.log("NUMBER OF CHUNKS: ", chunks.length);
+                // chunks.forEach((chunk, index) => {
+                //     setTimeout(() => {
+                //         setCurrentBotResponseChunks(prevChunks => [...prevChunks, chunk]);
+                //     }, 1000 * index);
+                // });
+                // console.log("Ending chunk logic");
+                chunks.forEach((chunk, index) => {
                     setCurrentBotResponseChunks(prevChunks => [...prevChunks, chunk]);
-                }, 1000 * index);
-            });
-            console.log("Ending chunk logic");
+                })
 
-            // After all chunks are revealed, add the entire response to the messages and clear the currentBotResponseChunks
-            setTimeout(() => {
-                setMessages(prev => [...prev, { type: 'bot', content: data.response }]);
+                // After all chunks are revealed, add the entire response to the messages and clear the currentBotResponseChunks
+                // setTimeout(() => {
+                //     setMessages(prev => [...prev, { type: 'bot', content: message }]);
+                //     setCurrentBotResponseChunks([]);
+                //     setIsBotTyping(false);
+                // }, 1000 * chunks.length)
+
+                setMessages(prev => [...prev, { type: 'bot', content: message }]);
                 setCurrentBotResponseChunks([]);
                 setIsBotTyping(false);
-            }, 1000 * chunks.length);
+            });
 
         } catch (error) {
             console.error('Failed to fetch data:', error);
