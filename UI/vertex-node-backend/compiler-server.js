@@ -23,20 +23,25 @@ app.post('/compile', (req, res) => {
         "input": input
     });
 
+    let request = "Please execute the folloing python code: \n" + code;
+
+    console.log("request", request)
+
     let config = {
         method: "post",
-        url: 'https://codexweb.netlify.app/.netlify/functions/enforceCode',
+        url: 'http://127.0.0.1:5000/compile',
         headers: {
             'Content-Type': 'application/json'
         },
-        data: data
+        data: JSON.stringify({ message: request })
     };
 
     // Call the code compilation API
     Axios(config)
         .then((response) => {
-            res.send(response.data)
-            console.log(response.data)
+            let data = response.data
+            // console.log(data[0]['content'])
+            res.send(data[0]['content'])
         }).catch((error) => {
             console.log(error);
         });
