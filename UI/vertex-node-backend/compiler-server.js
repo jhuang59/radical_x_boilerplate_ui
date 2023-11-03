@@ -29,7 +29,7 @@ app.post('/compile', (req, res) => {
 
     let config = {
         method: "post",
-        url: 'http://127.0.0.1:5000/query',
+        url: 'http://127.0.0.1:5000/compile',
         headers: {
             'Content-Type': 'application/json'
         },

@@ -16,10 +16,23 @@ def query_agent():
     # )
     # response = groupchat.messages
     # print("response", groupchat.messages)
-    # print(jsonify({"response": response}))
     response = [{'content': '132', 'role': 'user', 'name': 'SeniorDeveloper'}, 
                 {'content': "I'm sorry, but it seems like there was a misunderstanding...", 'role': 'user', 'name': 'TaskMaster'},
                 {'content': "Alright, let's start with the first task...", 'role': 'user', 'name': 'JuniorDeveloper'}]
+    # execute_result = [{'content': 'hello world', 'role': 'user', 'name': 'TaskMaster'},]
+    return response
+
+@app.route('/compile', methods=['POST'])
+def compile_agent():
+    # data = request.json
+    # user_input = data['message']
+    # user_proxy.initiate_chat(
+    #     manager,
+    #     message=user_input,
+    #     clear_history=True
+    # )
+    # response = groupchat.messages
+    # print("response", groupchat.messages)
     execute_result = [{'content': 'hello world', 'role': 'user', 'name': 'TaskMaster'},]
     return execute_result
 

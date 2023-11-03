@@ -47,7 +47,7 @@ class agents():
             and problem-solving strategies. Ask the TaskMaster if you have any questions or concerns. For the challenge, you are to write
             code using python. Once you complete a task provided by the TaskMaster, confirm your code with the Senior Developer. Once the Senior
             Developer gives their approval, submit the code to the TaskMaster for evaluation.
-        ''',
+            ''',
         )
         groupchat = autogen.GroupChat(agents=[user_proxy, tm, jd], messages=[], max_round=50)
         manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
