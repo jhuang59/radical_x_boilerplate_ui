@@ -14,8 +14,9 @@ def query_agent():
     manager,
     message=user_input
     )
+    #manager.run_chat(messages=[{'content': user_input, 'role': 'user', 'name': 'SeniorDeveloper'}],sender=user_proxy,config=groupchat)
     # response=groupchat.messages
-    print("response", groupchat.messages)
+    # print("response", groupchat.messages)
     # print(jsonify({"response": response}))
     return jsonify(groupchat.messages)
 

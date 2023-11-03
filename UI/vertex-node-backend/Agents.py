@@ -4,10 +4,11 @@ class agents():
     def __init__(self) -> None:
         pass
     def construct(self):
+        api_key="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"
         config_list = [
             {
-                'model': 'gpt-4',
-                'api_key': 'sk-EeNKPKbRZfNuc1dYt4XZT3BlbkFJSM2',
+                'model': 'gpt-3.5-turbo',
+                'api_key': api_key,
             }  # OpenAI API endpoint for gpt-4
         ]
         gpt4_config = {
@@ -36,7 +37,8 @@ class agents():
         in effective communication with the Junior Developer, discussing coding decisions, debugging efforts,
         and problem-solving strategies as if simulating a real pair programming experience. Make sure to only provide code in python.''',
         code_execution_config={"last_n_messages": 2, "work_dir": "groupchat"},
-        #human_input_mode="TERMINATE",
+        human_input_mode="TERMINATE",
+        max_consecutive_auto_reply=1,
         )
         jd = autogen.AssistantAgent(
             name="JuniorDeveloper",
@@ -49,7 +51,7 @@ class agents():
             Developer gives their approval, submit the code to the TaskMaster for evaluation.
         ''',
         )
-        groupchat = autogen.GroupChat(agents=[user_proxy, tm, jd], messages=[], max_round=50)
+        groupchat = autogen.GroupChat(agents=[user_proxy, tm, jd], messages=[], max_round=3)
         manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
         return user_proxy,groupchat,manager
 

@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 
 app.post('/api/query-vertex', async(req, res) => {
     const { query } = req.body;
-    console.log("query",query)
+    // console.log("query",query)
     try {
         // Call the Python API using fetch
         const pythonApiResponse = await fetch('http://127.0.0.1:5000/query', {
