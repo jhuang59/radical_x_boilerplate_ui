@@ -39,8 +39,9 @@ app.post('/compile', (req, res) => {
     // Call the code compilation API
     Axios(config)
         .then((response) => {
-            res.send(response.data)
-            console.log(response.data)
+            let data = response.data
+            // console.log(data[0]['content'])
+            res.send(data[0]['content'])
         }).catch((error) => {
             console.log(error);
         });
