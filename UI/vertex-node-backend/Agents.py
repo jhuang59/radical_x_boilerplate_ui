@@ -7,7 +7,7 @@ class agents():
         config_list = [
             {
                 'model': 'gpt-4',
-                'api_key': 'sk-EeNKPKbRZfNuc1dYt4XZT3BlbkFJSM2',
+                'api_key': '',
             }  # OpenAI API endpoint for gpt-4
         ]
         gpt4_config = {
