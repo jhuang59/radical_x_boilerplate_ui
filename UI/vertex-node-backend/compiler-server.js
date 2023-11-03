@@ -33,7 +33,7 @@ app.post('/compile', (req, res) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: request })
+        data: JSON.stringify({ message: request })
     };
 
     // Call the code compilation API
