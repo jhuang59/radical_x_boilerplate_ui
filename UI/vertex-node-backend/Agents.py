@@ -30,13 +30,13 @@ class agents():
         )
 
         user_proxy = autogen.UserProxyAgent(
-        name="SeniorDeveloper",
-        system_message='''A human Senior Developer. Help the Junior Developer complete the challenge provided by the TaskMaster.
-        Provide feedback to the Junior Developer and point out their mistakes. You should engage
-        in effective communication with the Junior Developer, discussing coding decisions, debugging efforts,
-        and problem-solving strategies as if simulating a real pair programming experience. Make sure to only provide code in python.''',
-        code_execution_config={"last_n_messages": 2, "work_dir": "groupchat"},
-        #human_input_mode="TERMINATE",
+            name="SeniorDeveloper",
+            system_message='''A human Senior Developer. Help the Junior Developer complete the challenge provided by the TaskMaster.
+            Provide feedback to the Junior Developer and point out their mistakes. You should engage
+            in effective communication with the Junior Developer, discussing coding decisions, debugging efforts,
+            and problem-solving strategies as if simulating a real pair programming experience. Make sure to only provide code in python.''',
+            code_execution_config={"last_n_messages": 2, "work_dir": "groupchat", "use_docker": True},
+            #human_input_mode="TERMINATE",
         )
         jd = autogen.AssistantAgent(
             name="JuniorDeveloper",

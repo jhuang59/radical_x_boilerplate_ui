@@ -23,13 +23,17 @@ app.post('/compile', (req, res) => {
         "input": input
     });
 
+    let request = "Please execute the folloing python code: \n" + code;
+
+    console.log("request", request)
+
     let config = {
         method: "post",
-        url: 'https://codexweb.netlify.app/.netlify/functions/enforceCode',
+        url: 'http://127.0.0.1:5000/query',
         headers: {
             'Content-Type': 'application/json'
         },
-        data: data
+        body: JSON.stringify({ message: request })
     };
 
     // Call the code compilation API
