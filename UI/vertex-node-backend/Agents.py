@@ -4,7 +4,7 @@ class agents():
     def __init__(self) -> None:
         pass
     def construct(self):
-        api_key="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"
+        api_key="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"
         config_list = [
             {
                 'model': 'gpt-3.5-turbo',
