@@ -23,7 +23,7 @@ app.post('/compile', (req, res) => {
         "input": input
     });
 
-    let request = "Please execute the folloing python code: \n" + code;
+    let request = "Please execute the folloing python code and return the execution result only \n" + code;
 
     console.log("request", request)
 
@@ -40,8 +40,10 @@ app.post('/compile', (req, res) => {
     Axios(config)
         .then((response) => {
             let data = response.data
-            // console.log(data[0]['content'])
-            res.send(data[0]['content'])
+            console.log(data[1]['content']);
+            let lines = data[1]['content'].split("\n");
+            let sliced = lines.slice(3, -1);
+            res.send(sliced.join('\n'));
         }).catch((error) => {
             console.log(error);
         });
